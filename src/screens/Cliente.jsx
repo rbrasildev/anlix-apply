@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Clipboard } from 'react-native';
 import styles from '../../styles/Cliente';
+import { Button, Card } from "react-native-paper";
 
 
 export default function Cliente({ route, navigation }) {
@@ -77,8 +78,10 @@ export default function Cliente({ route, navigation }) {
 
     const copyToClipboard = () => {
         Clipboard.setString(dataUserSgp.wifi_password);
-        setInterval
         setIconCopy('clipboard-check')
+        setInterval(() => {
+            setIconCopy('content-copy')
+        }, 2000)
     };
 
     function navigationToDevice() {
@@ -88,46 +91,7 @@ export default function Cliente({ route, navigation }) {
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView behavior="position" enabled>
-                <View>
-                    <View>
-                        <View style={{ flexDirection: 'row' }}>
-                            <MaterialCommunityIcons
-                                name={'wifi'}
-                                size={24}
-                                color='#333'
-                            />
-                            <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 2.4Ghz</Text>
-                        </View>
-                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid == null ? 'Nâo atribuído' : dataUserSgp.wifi_ssid}</Text>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password == null ? 'Não atribuído': dataUserSgp.wifi_password }</Text>
-                            <TouchableOpacity
-                                onPress={copyToClipboard}
-                            >
-                                <Text style={{ color: '#fff' }}>
-                                    <MaterialCommunityIcons
-                                        name={iconCopy}
-                                        size={24}
-                                        color='orange'
-                                    />
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                    <View>
-                        <View style={{ flexDirection: 'row', marginTop:20 }}>
-                            <MaterialCommunityIcons
-                                name={'wifi'}
-                                size={24}
-                                color='#333'
-                            />
-                            <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 5.8Ghz</Text>
-                        </View>
-                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid_5 == null ? "Não atribuído" : dataUserSgp.wifi_ssid_5}</Text>
-                        <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password_5 == null ? 'Nâo atribuído' : dataUserSgp.wifi_password_5 }</Text>
-                    </View>
-                </View>
-                <View style={{ marginTop: 20 }}>
+                <View style={{ marginVertical: 10 }}>
                     <View style={{
                         alignItems: 'center',
                         justifyContent: 'space-between',
@@ -140,9 +104,10 @@ export default function Cliente({ route, navigation }) {
                                 backgroundColor: "#103778",
                                 width: 100,
                                 padding: 4,
-                                borderRadius: 4,
+                                borderRadius: 20,
                                 alignItems: 'center',
-                                justifyContent: 'center'
+                                justifyContent: 'center',
+                                marginBottom:10,
                             }}
                         ><Text>
                                 <MaterialCommunityIcons
@@ -154,6 +119,7 @@ export default function Cliente({ route, navigation }) {
                     </View>
                     <TextInput style={styles.input}
                         value={mac}
+                        placeholderTextColor="#87949D"
                         onChangeText={formatMAC}
                         placeholder='Digite o MAC'
                     >
@@ -163,9 +129,57 @@ export default function Cliente({ route, navigation }) {
                     >
                         <Text style={{ fontSize: 20 }}>Gerenciar CPE</Text>
                         {/* <View>{loading ? <ActivityIndicator size="large" color="#00ff00" /> : false}</View> */}
-
                     </TouchableOpacity>
                 </View>
+
+                <Card style={{ padding: 20, backgroundColor: '#1E1F20' }}>
+                    <Card.Title
+                        titleVariant="headlineSmall"
+                        subtitleVariant="bodyLarge"
+                        title={dataUserSgp.nome}
+                        titleStyle={{ color: '#ddd' }}
+                        subtitleStyle={{ color: '#87949D', marginBottom: 10 }}
+                        subtitle={`Login: ${dataUserSgp.login}`} />
+                    <Card.Content>
+                        <View style={{ flexDirection: 'row' }}>
+                            <MaterialCommunityIcons
+                                name={'wifi'}
+                                size={24}
+                                color='#4CB752'
+                            />
+                            <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 2.4Ghz</Text>
+                        </View>
+                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid == null ? 'Nâo atribuído' : dataUserSgp.wifi_ssid}</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password == null ? 'Não atribuído' : dataUserSgp.wifi_password}</Text>
+                            <TouchableOpacity
+                                style={{ backgroundColor: '#87949D', padding: 4, borderRadius: 4 }}
+                                onPress={copyToClipboard}
+                            >
+                                <Text style={{ color: '#fff' }}>
+                                    <MaterialCommunityIcons
+                                        name={iconCopy}
+                                        size={24}
+                                        color='#fff'
+                                    />
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </Card.Content>
+                    <Card.Content>
+                        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                            <MaterialCommunityIcons
+                                name={'wifi'}
+                                size={24}
+                                color='#4CB752'
+                            />
+                            <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 5.8Ghz</Text>
+                        </View>
+                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid_5 == null ? "Não atribuído" : dataUserSgp.wifi_ssid_5}</Text>
+                        <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password_5 == null ? 'Nâo atribuído' : dataUserSgp.wifi_password_5}</Text>
+                    </Card.Content>
+                </Card>
             </KeyboardAvoidingView>
         </View>
     )

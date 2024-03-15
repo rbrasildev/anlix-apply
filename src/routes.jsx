@@ -8,6 +8,9 @@ import Roteador from "./screens/Roteador";
 import Teste from "./screens/Teste";
 import Cliente from "./screens/Cliente";
 import Wifi from "./screens/Wifi";
+import Remove from "./screens/Remove";
+import Login from "./screens/Login";
+import Cto from "./screens/Cto/index";
 
 
 
@@ -19,15 +22,27 @@ const Routes = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
+                    name="Login"
+                    component={Login}
+                    options={{
+                        headerShown: false,
+                        title: 'Login',
+                        headerStyle: {
+                            backgroundColor: '#1E1F20',
+                        },
+                        headerTintColor: '#87949D',
+                    }}
+                />
+                <Stack.Screen
                     name="Home"
                     component={Home}
                     options={{
                         headerShown: false,
                         title: 'Página Inicial',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
 
@@ -37,9 +52,9 @@ const Routes = () => {
                     options={{
                         title: 'Buscar dispositivo...',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
 
@@ -49,9 +64,9 @@ const Routes = () => {
                     options={{
                         title: 'Definir configuração Anlix',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
 
@@ -61,9 +76,9 @@ const Routes = () => {
                     options={{
                         title: 'Dados do cliente',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
 
@@ -74,9 +89,9 @@ const Routes = () => {
                     options={{
                         title: 'Informações Wifi Cliente',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
 
@@ -86,13 +101,33 @@ const Routes = () => {
                     options={{
                         title: 'Informações da CPE',
                         headerStyle: {
-                            backgroundColor: '#242A38',
+                            backgroundColor: '#1E1F20',
                         },
-                        headerTintColor: '#fff',
+                        headerTintColor: '#87949D',
                     }}
                 />
-
-
+                <Stack.Screen
+                    name="Remove"
+                    component={Remove}
+                    options={{
+                        title: 'Remover roteador',
+                        headerStyle: {
+                            backgroundColor: '#1E1F20',
+                        },
+                        headerTintColor: '#87949D',
+                    }}
+                />
+                <Stack.Screen
+                    name="Cto"
+                    component={Cto}
+                    options={{
+                        title: 'CTO',
+                        headerStyle: {
+                            backgroundColor: '#1E1F20',
+                        },
+                        headerTintColor: '#87949D',
+                    }}
+                />
             </Stack.Navigator>
         </NavigationContainer>
     );

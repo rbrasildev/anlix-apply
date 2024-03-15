@@ -4,9 +4,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#202430',
-        padding:20,
-        paddingTop:30,
+        backgroundColor: '#131314',
+        padding:15,
     
     },
 
@@ -19,7 +18,7 @@ const styles = StyleSheet.create({
 
     subTitle: {
         fontSize: 18,
-        color: '#666',
+        color: '#87949D',
         margin:5.4,
     },
 
@@ -40,20 +39,22 @@ const styles = StyleSheet.create({
         boxShadow: '0px 0px 10px #000',
     },
     input: {
-        backgroundColor: '#D6D6D6',
-        height:60,
-        borderRadius:4,
+        backgroundColor: '#1E1F20',
+        elevation:1,
+        height: 60,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop:10,
-        marginBottom:10,
-        paddingLeft:20,
-        fontSize:20,
-    },
+        marginTop: 10,
+        marginBottom: 10,
+        paddingLeft: 20,
+        fontSize: 20,
+        color:'#87949D',
+      },
     button: {
         backgroundColor: '#4CB752',
         height:60,
-        borderRadius:4,
+        borderRadius:10,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom:30,

@@ -1,7 +1,7 @@
 import axios from "axios";
+// import {ANLIX_USER, ANLIX_PASSWORD} from 'react-native-dotenv';
 
 const api = axios.create({
-    //url antiga baseURL: "https://redeconexaonet.flashman.anlix.io/api/v2/device/update/",
     baseURL: "https://flashtins.redeconexaonet.com/api/v2/device/update/",
     auth: {
         username: "admin",

@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#202430',
+        backgroundColor: '#131314',
         padding: 20,
     },
     list : {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     card : {
         padding:5.4,
         marginTop:5.4,
-        backgroundColor:'#242A38',
+        backgroundColor:'#1E1F20',
         justifyContent:'center'
     },
     wifiContainer : {

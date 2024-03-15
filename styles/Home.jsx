@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native-web";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#202430',
+        backgroundColor: '#131314',
         justifyContent: 'space-between'
 
     },
@@ -13,12 +13,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        color: '#d0d0d0',
+        color: '#ddd',
     },
 
     subTitle: {
-        fontSize: 14,
-        color: '#4E596F',
+        color: '#87949D',
         margin: 4.2
     },
     header: {
@@ -28,27 +27,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: '#fff',
         padding: 20,
-        backgroundColor: "#242A38",
     },
     welcome: {
-        flexDirection: 'column',
         margin: 20,
-        justifyContent: 'flex-start',
     },
 
     card: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'flex-start',
         padding: 10,
         marginTop: 10,
-        justifyContent: 'flex-start',
-        backgroundColor: '#242A38',
-        borderRadius: 4,
+        backgroundColor: '#1E1F20',
+        borderRadius: 10,
         height: 100,
-        width: '90%',
+        width: '93%',
         color: '#FFF',
         fontSize: 30,
-        boxShadow: '0px 0px 10px #000',
+        elevation:3,
     },
     icon: {
         width: 80,
@@ -64,3 +60,5 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
 });
+
+export default styles;

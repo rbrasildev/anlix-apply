@@ -4,12 +4,11 @@ import { StyleSheet } from "react-native";
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#202430',
+        backgroundColor: '#131314',
       },
       input: {
-        backgroundColor: '#ddd',
-        borderColor: '#2A3B70',
-        borderWidth: 1,
+        backgroundColor: '#1E1F20',
+        elevation:1,
         height: 60,
         borderRadius: 4,
         justifyContent: 'center',
@@ -18,7 +17,7 @@ import { StyleSheet } from "react-native";
         marginBottom: 10,
         paddingLeft: 20,
         fontSize: 20,
-        placeholderTextColor: '#d0d0d0',
+        color:'#87949D',
       },
       button: {
         backgroundColor: '#4CB752',
