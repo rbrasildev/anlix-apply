@@ -1,14 +1,20 @@
 import { StyleSheet } from "react-native";
 
- const styles = StyleSheet.create({
+
+const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         backgroundColor: '#131314',
-      },
-      input: {
-        backgroundColor: '#1E1F20',
-        elevation:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+
+    },
+    input: {
+        backgroundColor: '#1e1f20',
+        borderColor: '#333',
+        color:'#666',
+        borderWidth: 1,
         height: 60,
         borderRadius: 10,
         justifyContent: 'center',
@@ -17,16 +23,17 @@ import { StyleSheet } from "react-native";
         marginBottom: 10,
         paddingLeft: 20,
         fontSize: 20,
-        color:'#87949D',
-      },
-      button: {
+    },
+    button: {
         backgroundColor: '#4CB752',
         height: 60,
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 30,
-      }
-})
+        fontWeight: 'bold',
+        color:'#ccc'
+    },
+});
 
 export default styles;

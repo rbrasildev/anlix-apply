@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         width: '93%',
         color: '#FFF',
         fontSize: 30,
-        elevation:3,
+        elevation: 3,
     },
     icon: {
         width: 80,

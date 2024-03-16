@@ -61,19 +61,11 @@ export default function Cliente({ route, navigation }) {
         callGetApi();
     }, []);
 
-    /***
-     * Função para colocar máscara de mac no formato xx:xx:xx:xx:xx:xx
-     */
     function formatMAC(e) {
-        var r = /([a-f0-9]{2})([a-f0-9]{2})/i,
-            str = e.replace(/[^a-f0-9]/ig, "");
-
-        while (r.test(str)) {
-            str = str.replace(r, '$1' + '-' + '$2');
-        }
-        e = str.slice(0, 17).split('-').join(':');
-        setMac(e.toUpperCase());
+        const formatted = e.replace(/(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})/g, "$1:$2:$3:$4:$5:$6");
+        setMac(formatted.toUpperCase());
     };
+
 
 
     const copyToClipboard = () => {
@@ -91,32 +83,33 @@ export default function Cliente({ route, navigation }) {
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView behavior="position" enabled>
-                <View style={{ marginVertical: 10 }}>
+                <View>
                     <View style={{
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        flexDirection: "row"
+                        flexDirection: "row",
+                        marginVertical: 10
                     }}>
-                        <Text style={{ fontSize: 20, color: '#d0d0d0' }}>MAC (resetdefault)</Text>
+                        <Text style={{ fontSize: 20, color: '#d0d0d0' }}>Buscar (resetdefault)</Text>
                         <TouchableOpacity
                             onPress={navigationToDevice}
                             style={{
                                 backgroundColor: "#103778",
                                 width: 100,
-                                padding: 4,
+                                padding: 6,
                                 borderRadius: 20,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                marginBottom:10,
                             }}
-                        ><Text>
-                                <MaterialCommunityIcons
-                                    name="text-search"
-                                    size={30}
-                                    color='#fff'
-                                /></Text>
+                        >
+                            <MaterialCommunityIcons
+                                name="text-search"
+                                size={30}
+                                color='#fff'
+                            />
                         </TouchableOpacity>
                     </View>
+
                     <TextInput style={styles.input}
                         value={mac}
                         placeholderTextColor="#87949D"
@@ -151,15 +144,15 @@ export default function Cliente({ route, navigation }) {
                         </View>
                         <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid == null ? 'Nâo atribuído' : dataUserSgp.wifi_ssid}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password == null ? 'Não atribuído' : dataUserSgp.wifi_password}</Text>
+                            <Text style={styles.subTitle}>Senha: {dataUserSgp.wifi_password == null ? 'Não atribuído' : dataUserSgp.wifi_password}</Text>
                             <TouchableOpacity
-                                style={{ backgroundColor: '#87949D', padding: 4, borderRadius: 4 }}
+                                style={{ padding: 4, borderRadius: 4 }}
                                 onPress={copyToClipboard}
                             >
                                 <Text style={{ color: '#fff' }}>
                                     <MaterialCommunityIcons
                                         name={iconCopy}
-                                        size={24}
+                                        size={28}
                                         color='#fff'
                                     />
                                 </Text>

@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#202430"
+      "backgroundColor": "#131314"
     },
     "android": {
       "package": "com.rbrasil.anlixapply"

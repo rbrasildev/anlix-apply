@@ -10,7 +10,8 @@ import Cliente from "./screens/Cliente";
 import Wifi from "./screens/Wifi";
 import Remove from "./screens/Remove";
 import Login from "./screens/Login";
-import Cto from "./screens/Cto/index";
+import App from "./screens/Cto/index.jsx";
+import Cto from "./screens/Cto/Cto.jsx";
 
 
 
@@ -118,10 +119,22 @@ const Routes = () => {
                     }}
                 />
                 <Stack.Screen
+                    name="App"
+                    component={App}
+                    options={{
+                        title: 'App',
+                        headerStyle: {
+                            backgroundColor: '#1E1F20',
+                        },
+                        headerTintColor: '#87949D',
+                    }}
+                />
+
+                <Stack.Screen
                     name="Cto"
                     component={Cto}
                     options={{
-                        title: 'CTO',
+                        title: 'Cto',
                         headerStyle: {
                             backgroundColor: '#1E1F20',
                         },

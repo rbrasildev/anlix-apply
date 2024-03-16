@@ -88,7 +88,7 @@ export default function Device({ navigation }) {
                                         Clipboard.setString(resetdefaults[index]._id);
                                     }}
                                 >
-                                    <View style={{ backgroundColor: '#666', padding: 6, borderRadius: 4, }}>
+                                    <View>
                                         <MaterialCommunityIcons
                                             name="content-copy"
                                             size={24}

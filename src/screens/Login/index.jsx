@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, Text, SafeAreaView, TouchableOpacity, TextInput, Image, Alert } from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, TextInput, Image } from 'react-native';
 import styles from './style'
 import axios from "axios";
 
@@ -30,15 +30,15 @@ const Login = ({ navigation }) => {
     callApi()
     function auth() {
         navigation.navigate('Home', {
-            username : username
+            username: username
         })
-        // if(userData.status == true){
-        // }else{
+        // if (userData.status == true) {
+        // } else {
         //     Alert.alert('Falha na autenticação', 'Credenciais inválidas');
         // }
     }
 
-  
+
 
     return (
         <SafeAreaView style={styles.container}>

@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from '../../styles/Roteador';
 import axios from 'axios';
 import { useGetData } from '../../services/useGetData';
+import { Card } from 'react-native-paper';
 
 
 export default function Roteador({ route }) {
@@ -28,10 +29,12 @@ export default function Roteador({ route }) {
     //função para verificar se o roteador está online
     function getStatus() {
         if (dataWifi.online_status == true) {
-            return <Text style={styles.online}>online</Text>
+            return <View style={styles.online}></View>
+
         } else {
-            return <Text style={styles.offline}>offline</Text>
+            return <View style={styles.offline}></View>
         }
+
     }
 
     //criar wifi
@@ -78,7 +81,7 @@ export default function Roteador({ route }) {
             console.log(error)
             return;
         })
-   
+
         if (api.status == 200) {
             Alert.alert(
                 'Successo',
@@ -95,28 +98,36 @@ export default function Roteador({ route }) {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.title}> {dataUserSgp.nome}</Text>
-            </View>
-            <View style={styles.card}>
-                <Text style={styles.title}>{getStatus()}</Text>
-                <Text style={styles.subTitle}>Modelo:  {dataWifi.model}</Text>
-                <Text style={styles.subTitle}>PPPoE_User: {dataWifi.pppoe_user}</Text>
-                <Text style={styles.subTitle}>PPPoE_Pass: {dataWifi.pppoe_password}</Text>
+            <Card style={{ width: '93%', marginTop: 15, backgroundColor: '#1e1f20', padding: 10 }}>
+                <Card.Title titleVariant='headlineSmall' titleStyle={{ color: '#ddd' }} subtitleStyle={{ color: '#666' }} title="Informações doa CPE" subtitle="Informações do roteador no anlix" />
+                <Card.Content>
+                    <Text style={{ fontSize: 20, marginVertical: 15, color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 22 }}>{getStatus()} </Text>
+                        <MaterialCommunityIcons
+                            name='lock'
+                            size={24}
+                            color='#ccc'
+                        />
+                        {dataWifi.use_tr069 ? 'tr069' : 'Firmware'}\
+                    </Text>
+                    <Text style={styles.subTitle}>Modelo  <Text style={{ color: '#666' }}>{dataWifi.model}</Text></Text>
+                    <Text style={styles.subTitle}>PPPoE_User <Text style={{ color: '#666' }}>{dataWifi.pppoe_user}</Text></Text>
+                    <Text style={styles.subTitle}>PPPoE_Pass <Text style={{ color: '#666' }}>{dataWifi.pppoe_password}</Text></Text>
 
-                <Text style={styles.subTitle}>SSID: {dataWifi.wifi_ssid}</Text>
-                <Text style={styles.subTitle}>Password: {dataWifi.wifi_password}</Text>
+                    <Text style={styles.subTitle}>SSID: <Text style={{ color: '#666' }}>{dataWifi.wifi_ssid}</Text></Text>
+                    <Text style={styles.subTitle}>Password <Text style={{ color: '#666' }}>{dataWifi.wifi_password}</Text></Text>
 
-                <Text style={styles.subTitle}>SSID_5: {dataWifi.wifi_ssid_5ghz}</Text>
-                <Text style={styles.subTitle}>Password_5: {dataWifi.wifi_password_5ghz}</Text>
-            </View>
+                    <Text style={styles.subTitle}>SSID_5 <Text style={{ color: '#666' }}>{dataWifi.wifi_ssid_5ghz}</Text></Text>
+                    <Text style={styles.subTitle}>Password_5 <Text style={{ color: '#666' }}>{dataWifi.wifi_password_5ghz}</Text></Text>
+                </Card.Content>
+            </Card>
             <Text>
                 {loading && <ActivityIndicator size="large" color="#00ff00" />}
             </Text>
             <TouchableOpacity style={styles.button}
                 onPress={callPostApi}
             >
-                <Text style={{ fontSize: 20, }}>Definir Wifi</Text>
+                <Text style={{ fontSize: 20, }}>Aplicar</Text>
             </TouchableOpacity>
 
         </SafeAreaView>
