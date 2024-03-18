@@ -3,14 +3,12 @@ import { StyleSheet } from "react-native-web";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 10,
         backgroundColor: '#131314',
         justifyContent: 'space-between'
 
     },
-    main: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+
     title: {
         fontSize: 20,
         color: '#ddd',
@@ -26,7 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         color: '#fff',
-        padding: 20,
+        marginVertical : 20
     },
     welcome: {
         margin: 20,
@@ -41,14 +39,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#1E1F20',
         borderRadius: 10,
         height: 100,
-        width: '93%',
         color: '#FFF',
         fontSize: 30,
         elevation: 3,
     },
     icon: {
-        width: 80,
-        height: 80,
+        width: 68,
+        height: 68,
         borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',

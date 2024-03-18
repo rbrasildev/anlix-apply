@@ -9,7 +9,7 @@ export default function Cto({ route }) {
     const { data, ctoIdent } = route.params;
 
     const totalClient = data.length
-    const livre = parseInt(totalClient - 16)
+    const livre = parseInt(16 - totalClient)
 
     return (
         <SafeAreaView style={{ backgroundColor: '#131314', display: 'flex', flex: 1, padding: 5 }}>
@@ -23,20 +23,21 @@ export default function Cto({ route }) {
                 <Text style={{ color: '#666', fontSize: 24, }}>{ctoIdent}</Text>
             </View>
             <View style={{ flexDirection: 'row', marginBottom: 10, gap: 10 }}>
-                <View style={{ alignItems: 'center', justifyContent: 'center', width: 120, borderRadius: 20, padding: 4, color: '#131314' }}>
-                    <Text style={{ color: '#666', fontSize: 16, fontWeight: 'bold' }}><MaterialCommunityIcons size={16} name="image-filter-frames" /> Ocupada {totalClient}</Text>
+                <View style={{ alignItems: 'center', justifyContent: 'center', borderRadius: 20, color: '#131314' }}>
+                    <Text style={{ color: '#666', fontSize: 16, fontWeight: 'bold' }}><MaterialCommunityIcons size={16} name="image-filter-frames" /> Ocupada ({totalClient})</Text>
                 </View>
-                <View style={{ alignItems: 'center', justifyContent: 'center', width: 120, borderRadius: 20, padding: 10, color: '#131314' }}>
-                    <Text style={{ color: '#666', fontSize: 16, fontWeight: 'bold' }}><MaterialCommunityIcons size={16} name="image-filter-frames" /> Livre {livre}</Text>
+                <View style={{ alignItems: 'center', justifyContent: 'center', borderRadius: 20, color: '#131314' }}>
+                    <Text style={{ color: '#666', fontSize: 16, fontWeight: 'bold' }}><MaterialCommunityIcons size={16} name="image-filter-frames" /> Livre ({livre})</Text>
                 </View>
             </View>
 
             <FlatList
                 data={data}
                 renderItem={({ item }) => {
-                    return <Card style={{ backgroundColor: item.status == 3 ? '#B8001C' : item.status == 4 ? '#F28705' : '#1E1F20', margin: 5 }}>
+                    return <Card style={{ backgroundColor: item.status == 3 ? '#590202' : item.status == 4 ? '#F28705' : '#1E1F20', margin: 5 }}>
                         <Card.Content>
-                            <Card.Title titleStyle={{ color: '#ccc' }} titleVariant="titleMedium" title={item.nome} subtitleStyle={{ color: '#666' }} subtitle={item.login} />
+                            <Card.Title titleStyle={{ color: '#FFFF' }} titleVariant="titleMedium" title={item.nome} subtitleStyle={{ color: '#CCC' }}
+                                subtitle={`${item.login} - ${item.status == 3 ? 'Cancelado' : item.status == 4 ? 'Suspenso' : 'Ativo'}`} />
                             <View
                                 style={{ gap: 10, marginVertical: 4, borderRadius: 3, padding: 5, alignItems: 'flex-start', flexDirection: 'row', justifyContent: 'space-between' }}>
 

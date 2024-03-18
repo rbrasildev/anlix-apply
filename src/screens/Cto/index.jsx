@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './../../../styles/Global.jsx'
 import { useState } from "react";
 import { Alert } from "react-native";
@@ -29,7 +30,17 @@ export default function App({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={{ width: '100%' }}>
+                <View style={{flexDirection:'row', alignItems:'center', gap:3}}>
+                    <MaterialCommunityIcons
+                        name="package"
+                        color="#666"
+                        size={30}
+                    />
+                    <Text style={{ color: "#666" }}>Digite número da CTO</Text>
+                </View>
                 <TextInput
+                    placeholder="EX: XX-XX-0000"
+                    placeholderTextColor="#666"
                     value={ctoIdent}
                     onChangeText={setCtoIdent}
                     style={styles.input} />
