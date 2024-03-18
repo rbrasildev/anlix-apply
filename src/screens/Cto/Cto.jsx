@@ -2,18 +2,15 @@ import { View, Text, FlatList } from "react-native";
 import { Card } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useState } from "react";
+import { StatusOnline } from "./StatusOnline";
+
 
 export default function Cto({ route }) {
     const { data, ctoIdent } = route.params;
-    const { online, setOnline } = useState(false)
+
     const totalClient = data.length
     const livre = parseInt(totalClient - 16)
 
-    async function isOnline(username) {
-        const data = await fetch(`http://170.245.175.14:9595/api/api.php?online=${username}`).then((response) => response.json());
-    }
-    
     return (
         <SafeAreaView style={{ backgroundColor: '#131314', display: 'flex', flex: 1, padding: 5 }}>
 
@@ -50,7 +47,7 @@ export default function Cto({ route }) {
 
                                 <View style={{ color: '#ccc', fontSize: 16, flexDirection: 'row', gap: 10, alignItems: 'center' }}>
                                     <Text style={{ color: '#CCC', fontSize: 20 }}>{item.wifi_ssid_5}</Text>
-                                    <MaterialCommunityIcons style={{ color: "#fff"}} name="wifi" size={20} />
+                                    <StatusOnline isOnline={item.login} />
                                 </View>
 
                             </View>
