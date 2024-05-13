@@ -1,16 +1,17 @@
-import { Text, Alert, View, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import styles from '../../styles/Roteador';
 import axios from 'axios';
 import { useGetData } from '../../services/useGetData';
 import { Card } from 'react-native-paper';
+import styles from '../../styles/Roteador';
+import React, { useState, useEffect } from 'react';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Text, Alert, View, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
+
 
 
 export default function Roteador({ route }) {
     const { getApi } = useGetData();
 
-    const { mac, dataUserSgp } = route.params;
+    const { mac, dataUserSgp, wifi_ssid, wifi_password, wifi_ssid_5, wifi_password_5 } = route.params;
 
     const [loading, setLoading] = useState(true)
     const [dataWifi, setDataWifi] = useState({});
@@ -34,14 +35,12 @@ export default function Roteador({ route }) {
         } else {
             return <View style={styles.offline}></View>
         }
-
     }
 
     //criar wifi
     const callPostApi = async () => {
         const api = await axios({
             method: "put",
-            // url: "https://redeconexaonet.flashman.anlix.io/api/v2/device/update/" + mac,
             url: "https://flashtins.redeconexaonet.com/api/v2/device/update/" + mac,
             auth: {
                 username: "admin",
@@ -52,10 +51,10 @@ export default function Roteador({ route }) {
                     mac_address: mac,
                     pppoe_user: dataUserSgp.login,
                     pppoe_password: dataUserSgp.login_password,
-                    wifi_ssid: dataUserSgp.wifi_ssid,
-                    wifi_password: dataUserSgp.wifi_password,
-                    wifi_ssid_5ghz: dataUserSgp.wifi_ssid_5,
-                    wifi_password_5ghz: dataUserSgp.wifi_password_5,
+                    wifi_ssid: wifi_ssid,
+                    wifi_password: wifi_password,
+                    wifi_ssid_5ghz: wifi_ssid_5,
+                    wifi_password_5ghz: wifi_password_5,
                 }
 
             }
@@ -97,8 +96,8 @@ export default function Roteador({ route }) {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Card style={{ width: '93%', marginTop: 15, backgroundColor: '#1e1f20', padding: 10 }}>
+        <View style={{ flex: 1, backgroundColor: '#131314', padding:5 }}>
+            <Card style={{ marginTop: 15, paddingVertical:20, backgroundColor: '#1e1f20' }}>
                 <Card.Title titleVariant='headlineSmall' titleStyle={{ color: '#ddd' }} subtitleStyle={{ color: '#666' }} title="Informações doa CPE" subtitle="Informações do roteador no anlix" />
                 <Card.Content>
                     <Text style={{ fontSize: 20, marginVertical: 15, color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -108,7 +107,7 @@ export default function Roteador({ route }) {
                             size={24}
                             color='#ccc'
                         />
-                        {dataWifi.use_tr069 ? 'tr069' : 'Firmware'}\
+                        {dataWifi.use_tr069 ? 'tr069' : 'Firmware'}
                     </Text>
                     <Text style={styles.subTitle}>Modelo  <Text style={{ color: '#666' }}>{dataWifi.model}</Text></Text>
                     <Text style={styles.subTitle}>PPPoE_User <Text style={{ color: '#666' }}>{dataWifi.pppoe_user}</Text></Text>
@@ -124,13 +123,15 @@ export default function Roteador({ route }) {
             <Text>
                 {loading && <ActivityIndicator size="large" color="#00ff00" />}
             </Text>
-            <TouchableOpacity style={styles.button}
-                onPress={callPostApi}
-            >
-                <Text style={{ fontSize: 20, }}>Aplicar</Text>
-            </TouchableOpacity>
+            <View style={{justifyContent:'center', alignItems:'center'}}>
+                <TouchableOpacity style={styles.button}
+                    onPress={callPostApi}
+                >
+                    <Text style={{ fontSize: 20, }}>Aplicar</Text>
+                </TouchableOpacity>
+            </View>
 
-        </SafeAreaView>
+        </View>
 
     )
 

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         width: 20,
         height: 20,
-        backgroundColor: '#4CAF50',
+        backgroundColor: 'red',
         borderRadius: 20,
     },
     button: {
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 30,
         marginTop: 10,
-        width: '90%'
+        width: '100%'
     }
 });
 

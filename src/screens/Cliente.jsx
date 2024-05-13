@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useGetData } from '../../services/useGetData';
-import { useEffect, useState } from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Clipboard } from 'react-native';
+import { Card } from "react-native-paper";
 import styles from '../../styles/Cliente';
-import { Button, Card } from "react-native-paper";
+import { useEffect, useState } from 'react';
+import { useGetData } from '../../services/useGetData';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Alert, Clipboard, ActivityIndicator } from 'react-native';
 
 
 export default function Cliente({ route, navigation }) {
@@ -12,8 +12,12 @@ export default function Cliente({ route, navigation }) {
 
     const [mac, setMac] = useState('');
     const [dataUserSgp, setDataUserSgp] = useState({});
+    const [wifi_ssid, setWifi_ssid] = useState();
+    const [wifi_password, setWifi_password] = useState();
+    const [wifi_ssid_5, setWifi_ssid_5] = useState();
+    const [wifi_password_5, setWifi_password_5] = useState();
     const [iconCopy, setIconCopy] = useState('content-copy')
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
 
     const { getApi } = useGetData();
@@ -38,7 +42,12 @@ export default function Cliente({ route, navigation }) {
             }
             navigation.navigate('Roteador', {
                 mac: mac,
-                dataUserSgp: dataUserSgp
+                dataUserSgp: dataUserSgp,
+                wifi_ssid: wifi_ssid,
+                wifi_password: wifi_password,
+                wifi_ssid_5: wifi_ssid_5,
+                wifi_password_5: wifi_password_5
+
             });
             console.log(response.status);
             setLoading(true);
@@ -51,7 +60,13 @@ export default function Cliente({ route, navigation }) {
     const callGetApi = async () => {
         try {
             const response = await axios.get(`http://170.245.175.14:9595/api/api.php?login=` + cpf);
-            setDataUserSgp(response.data);
+            setDataUserSgp(response.data)
+            setWifi_ssid(response.data.wifi_ssid)
+            setWifi_password(response.data.wifi_password)
+            setWifi_ssid_5(response.data.wifi_ssid_5)
+            setWifi_password_5(response.data.wifi_password_5)
+            setLoading(false)
+
         } catch (error) {
             console.log(error);
         }
@@ -66,10 +81,8 @@ export default function Cliente({ route, navigation }) {
         setMac(formatted.toUpperCase());
     };
 
-
-
     const copyToClipboard = () => {
-        Clipboard.setString(dataUserSgp.wifi_password);
+        Clipboard.setString(wifi_password);
         setIconCopy('clipboard-check')
         setInterval(() => {
             setIconCopy('content-copy')
@@ -80,52 +93,21 @@ export default function Cliente({ route, navigation }) {
         navigation.navigate('Device');
     }
 
+
     return (
-        <View style={styles.container}>
-            <KeyboardAvoidingView behavior="position" enabled>
-                <View>
-                    <View style={{
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        flexDirection: "row",
-                        marginVertical: 10
-                    }}>
-                        <Text style={{ fontSize: 20, color: '#d0d0d0' }}>Buscar (resetdefault)</Text>
-                        <TouchableOpacity
-                            onPress={navigationToDevice}
-                            style={{
-                                backgroundColor: "#103778",
-                                width: 100,
-                                padding: 6,
-                                borderRadius: 20,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}
-                        >
-                            <MaterialCommunityIcons
-                                name="text-search"
-                                size={30}
-                                color='#fff'
-                            />
-                        </TouchableOpacity>
-                    </View>
+        <View style={{
+            flex: 1,
+            backgroundColor: '#131314',
+            padding: 5,
+        }}>
+            <KeyboardAvoidingView
+                behavior="position"
+                enabled>
 
-                    <TextInput style={styles.input}
-                        value={mac}
-                        placeholderTextColor="#87949D"
-                        onChangeText={formatMAC}
-                        placeholder='Digite o MAC'
-                    >
-                    </TextInput>
-                    <TouchableOpacity style={styles.button}
-                        onPress={callGetMac}
-                    >
-                        <Text style={{ fontSize: 20 }}>Gerenciar CPE</Text>
-                        {/* <View>{loading ? <ActivityIndicator size="large" color="#00ff00" /> : false}</View> */}
-                    </TouchableOpacity>
-                </View>
-
-                <Card style={{ padding: 20, backgroundColor: '#1E1F20' }}>
+                <Card style={{
+                    padding: 5,
+                    backgroundColor: '#131314'
+                }}>
                     <Card.Title
                         titleVariant="headlineSmall"
                         subtitleVariant="bodyLarge"
@@ -142,9 +124,17 @@ export default function Cliente({ route, navigation }) {
                             />
                             <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 2.4Ghz</Text>
                         </View>
-                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid == null ? 'Nâo atribuído' : dataUserSgp.wifi_ssid}</Text>
+                        <TextInput
+                            style={styles.input_secondary}
+                            value={wifi_ssid}
+                            onChangeText={setWifi_ssid}
+                        />
                         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={styles.subTitle}>Senha: {dataUserSgp.wifi_password == null ? 'Não atribuído' : dataUserSgp.wifi_password}</Text>
+                            <TextInput
+                                style={styles.input_secondary}
+                                value={wifi_password}
+                                onChangeText={setWifi_password}
+                            />
                             <TouchableOpacity
                                 style={{ padding: 4, borderRadius: 4 }}
                                 onPress={copyToClipboard}
@@ -169,10 +159,41 @@ export default function Cliente({ route, navigation }) {
                             />
                             <Text style={{ color: '#d0d0d0', fontSize: 20 }}> 5.8Ghz</Text>
                         </View>
-                        <Text style={styles.subTitle}>SSID: {dataUserSgp.wifi_ssid_5 == null ? "Não atribuído" : dataUserSgp.wifi_ssid_5}</Text>
-                        <Text style={styles.subTitle}>Password: {dataUserSgp.wifi_password_5 == null ? 'Nâo atribuído' : dataUserSgp.wifi_password_5}</Text>
+                        <TextInput
+                            style={styles.input_secondary}
+                            value={wifi_ssid_5}
+                            onChangeText={setWifi_ssid_5}
+                        />
+                        <TextInput
+                            style={styles.input_secondary}
+                            value={wifi_password_5}
+                            onChangeText={setWifi_password_5}
+                        />
                     </Card.Content>
                 </Card>
+
+                <View style={{paddingHorizontal:10,}}>
+                    <View style={{
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        flexDirection: "row",
+                    }}>
+                    
+                    </View>
+
+                    <TextInput style={styles.input}
+                        value={mac}
+                        placeholderTextColor="#87949D"
+                        onChangeText={formatMAC}
+                        placeholder='Digite o MAC'
+                    >
+                    </TextInput>
+                    <TouchableOpacity style={styles.button}
+                        onPress={callGetMac}
+                    >
+                        <Text style={{ fontSize: 20 }}>Gerenciar CPE</Text>
+                    </TouchableOpacity>
+                </View>
             </KeyboardAvoidingView>
         </View>
     )

@@ -3,10 +3,7 @@ import { StyleSheet } from "react-native-web";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
         backgroundColor: '#131314',
-        justifyContent: 'space-between'
-
     },
 
     title: {

@@ -42,7 +42,7 @@ const Login = ({ navigation }) => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <StatusBar
                 style="light"
             />
@@ -89,7 +89,7 @@ const Login = ({ navigation }) => {
                 <Text style={{ color: '#666', marginTop: '40%' }}>rbrasildev - Todos os direitos reservados</Text>
             </View>
 
-        </SafeAreaView>
+        </View>
     )
 }
 

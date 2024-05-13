@@ -1,7 +1,7 @@
 import React, { version } from "react";
-import { Text, View, Image, TouchableOpacity } from "react-native";
+import { Text, View, Image, TouchableOpacity, SafeAreaView } from "react-native";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { SafeAreaView } from "react-native-safe-area-context";
+// import { SafeAreaView } from "react-native-safe-area-context";
 
 import styles from "../../styles/Home";
 import { Card, Avatar } from "react-native-paper";
@@ -11,14 +11,13 @@ const Home = ({ route, navigation }) => {
 
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#131314' }}>
-            <Image source={require('../../assets/background.jpg')} style={{ height: 200, opacity: 0.6 }} />
-
-            <SafeAreaView style={styles.container}>
-                <View style={{ marginTop: -210 }}>
+        <SafeAreaView style={styles.container}>
+            <View style={{backgroundColor: '#131314', }}>
+                <Image source={require('../../assets/background.jpg')} style={{ height: 200, opacity: 0.6 }} />
+                <View style={{ marginTop: -190, padding:10, }}>
                     <View style={styles.header} >
                         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                            <Avatar.Image size={64} source={require('../../assets/avatar.jpg')} />
+                            <Avatar.Image size={64} source={require('../../assets/logo.png')} />
                             <Text style={{ fontSize: 20, color: '#666' }}>Olá, {username}</Text>
                         </View>
                         <TouchableOpacity
@@ -43,10 +42,10 @@ const Home = ({ route, navigation }) => {
                                 subtitle="Sistema para aplicar, remover configurações Anlix e verificar clientes na CTO" subtitleStyle={{ color: "#666" }}
 
                             />
-                            <View style={{alignItems:'center', justifyContent:'space-around', flexDirection:'row', marginTop:10}}>
-                                <Card.Cover style={{ backgroundColor: 'transparent', width: 100, height: 100, opacity:.4 }} source={require('../../assets/router.png')} />
-                                <Card.Cover style={{ backgroundColor: 'transparent', width: 85, height: 100, opacity:.4 }} source={require('../../assets/cto-preta.png')} />
-                            </View>
+                            {/* <View style={{ alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row', marginTop: 10 }}>
+                                <Card.Cover style={{ backgroundColor: 'transparent', width: 100, height: 100, opacity: .4 }} source={require('../../assets/router.png')} />
+                                <Card.Cover style={{ backgroundColor: 'transparent', width: 85, height: 100, opacity: .4 }} source={require('../../assets/cto-preta.png')} />
+                            </View> */}
                         </Card>
                         <View style={{ flexDirection: 'row', gap: 4, flexWrap: 'wrap', justifyContent: 'space-between' }}>
                             <TouchableOpacity onPress={() => navigation.navigate('Teste')} style={styles.card}>
@@ -108,8 +107,8 @@ const Home = ({ route, navigation }) => {
                     <Text style={styles.subTitle}>®rbrasildev - Todos os direitos reservados</Text>
                     <Text style={styles.subTitle}>Versão:{version}</Text>
                 </View>
-            </SafeAreaView>
-        </View>
+            </View >
+        </SafeAreaView>
     );
 }
 

@@ -5,34 +5,33 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#131314',
-        padding:15,
-    
+        padding: 15,
     },
 
     title: {
         fontSize: 20,
         color: '#4CB752',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         marginBottom: 30,
     },
 
     subTitle: {
         fontSize: 18,
         color: '#87949D',
-        margin:5.4,
+        margin: 5.4,
     },
 
-    titleDescription:{
+    titleDescription: {
         fontSize: 20,
         color: '#395487',
-        fontWeight:'bold',
+        fontWeight: 'bold',
         marginBottom: 30,
     },
 
     card: {
-        padding:20,
-        marginBottom:20,
-        marginTop:20,
+        padding: 20,
+        marginBottom: 20,
+        marginTop: 20,
         borderRadius: 4,
         color: '#FFF',
         fontSize: 30,
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: '#1E1F20',
-        elevation:1,
+        elevation: 1,
         height: 60,
         borderRadius: 10,
         justifyContent: 'center',
@@ -49,15 +48,30 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         paddingLeft: 20,
         fontSize: 20,
-        color:'#87949D',
-      },
-    button: {
-        backgroundColor: '#4CB752',
-        height:60,
-        borderRadius:10,
+        color: '#87949D',
+    },
+
+    input_secondary: {
+        borderRadius: 10,
+        backgroundColor:'#87949D30',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom:30,
+        marginTop: 5,
+        padding:10,
+        paddingHorizontal:15,
+        fontSize: 20,
+        color: '#fff',
+        borderWidth:1,
+        borderColor:"#333",
+    },
+
+    button: {
+        backgroundColor: '#4CB752',
+        height: 60,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 30,
     }
 });
 

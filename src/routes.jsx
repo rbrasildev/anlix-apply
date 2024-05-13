@@ -1,6 +1,7 @@
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import Home from "./screens/Home";
 import Device from "./screens/Device";
@@ -12,6 +13,8 @@ import Remove from "./screens/Remove";
 import Login from "./screens/Login";
 import App from "./screens/Cto/index.jsx";
 import Cto from "./screens/Cto/Cto.jsx";
+import { Text, TouchableOpacity } from "react-native";
+import { Icon } from "react-native-paper";
 
 
 
@@ -87,13 +90,22 @@ const Routes = () => {
                 <Stack.Screen
                     name="Cliente"
                     component={Cliente}
-                    options={{
-                        title: 'Informações Wifi Cliente',
+                    options={({ navigation }) => ({
+                        title: 'Buscar MAC (resetdefault)',
                         headerStyle: {
                             backgroundColor: '#1E1F20',
                         },
                         headerTintColor: '#87949D',
-                    }}
+                        headerRight: () => (
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate('Device');
+                                }}
+                            >
+                                <MaterialIcons name="search" size={32} color="#87949D" />
+                            </TouchableOpacity>
+                        ),
+                    })}
                 />
 
                 <Stack.Screen
